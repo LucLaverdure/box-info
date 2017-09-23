@@ -27,4 +27,4 @@ df -h >> output.txt
 echo -e "** Getting Logged In Users..."  >> output.txt
 who >> output.txt
 echo ------------------------------------- >> output.txt
-
+cat output.txt
