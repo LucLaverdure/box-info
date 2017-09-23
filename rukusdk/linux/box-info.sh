@@ -10,7 +10,9 @@ apt-get install curl
 curl ipinfo.io/ip >> output.txt
 export a=$(curl ipinfo.io/ip)
 cat /etc/hostname >> output.txt
+apt-get install net-tools
 ifconfig -a | grep inet >> output.txt
+ip a | grep inet >> output.txt
 apt-get install nmap
 nmap -sn --traceroute $a >> output.txt
 echo -e "----------[ Getting Processor Info ]---------------" >> output.txt
@@ -45,6 +47,7 @@ echo "" >> output.txt
 echo "----------[ Getting System User Accounts ]---------------" >> output.txt
 awk -F':' -v "min=${l##UID_MIN}" -v "max=${l1##UID_MAX}" '{ if ( !($3 >= min && $3 <= max  && $7 != "/sbin/nologin")) print $0 }' "$_p" >> output.txt
 echo -e "----------[ Getting Open Ports  ]---------------" >> output.txt
+apt-get install nmap
 nmap -A -T4 localhost | grep open >> output.txt
 echo ------------------------------------- >> output.txt
 cat output.txt
