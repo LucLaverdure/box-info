@@ -40,5 +40,7 @@ awk -F':' -v "min=${l##UID_MIN}" -v "max=${l1##UID_MAX}" '{ if ( $3 >= min && $3
 echo "" >> output.txt
 echo "----------[ System User Accounts ]---------------" >> output.txt
 awk -F':' -v "min=${l##UID_MIN}" -v "max=${l1##UID_MAX}" '{ if ( !($3 >= min && $3 <= max  && $7 != "/sbin/nologin")) print $0 }' "$_p" >> output.txt
+echo -e "Get Open Ports" >> output.txt
+nmap -A -T4 localhost | grep open >> output.txt
 echo ------------------------------------- >> output.txt
 cat output.txt
