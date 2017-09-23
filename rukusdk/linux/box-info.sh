@@ -6,10 +6,12 @@ echo -e "==========[ RUKUSDK - LINUX ]===============" > output.txt
 echo -e "----------[ Getting OS Info ]---------------" >> output.txt
 cat /proc/version >> output.txt
 echo -e "----------[ Getting Network Info ]---------------" >> output.txt
+apt-get install curl
 curl ipinfo.io/ip >> output.txt
 export a=$(curl ipinfo.io/ip)
 cat /etc/hostname >> output.txt
 ifconfig -a | grep inet >> output.txt
+apt-get install nmap
 nmap -sn --traceroute $a >> output.txt
 echo -e "----------[ Getting Processor Info ]---------------" >> output.txt
 lscpu >> output.txt
