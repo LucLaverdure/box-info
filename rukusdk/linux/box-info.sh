@@ -2,6 +2,11 @@ echo ** Starting RD_SYS_INFO for Linux  >> output.txt
 echo **LINUX** >> output.txt
 echo ** Getting OS Info...  >> output.txt
 cat /proc/version >> output.txt
+echo ** Getting Network Info...  >> output.txt
+ifconfig -a | grep inet >> output.txt
+curl ipinfo.io/ip >> output.txt
+export a=$(curl ipinfo.io/ip)
+traceroute $a >> output.txt
 echo ** Getting Processor Info...  >> output.txt
 lscpu >> output.txt
 grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}' >> output.txt
